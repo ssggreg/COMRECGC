@@ -24,5 +24,6 @@ We provide gnn and neurosed base models in the repository. To train new models:
 - For gnn base models, the model we use are in the [gnn.py](gnn.py) module.
 - For neurosed base models, please refer to the GREED [neurosed](https://github.com/idea-iitd/greed) repository.
 
-## To run the experiments from the paper, please run the COMRECGC notebook.
+## Experiments
+To run the experiments from the paper, please run the COMRECGC notebook.
 
