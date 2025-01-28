@@ -16,7 +16,7 @@ We tested our code in Python 3.10.12 using the following main dependencies:
 - [tqdm](https://tqdm.github.io/) v4.66.5
 - [fsspec](https://filesystem-spec.readthedocs.io/en/latest/) v2024.3.1
 
-W ran our experiments on the Google Colab platform, using L4 NVIDIA GPUs (22.5GB of RAM).
+W ran our experiments on the Google Colab platform, using an L4 NVIDIA GPU (22.5GB of RAM).
 
 ## GNN and distance evaluation
 
