@@ -75,7 +75,7 @@ class Mutagenicity(Dataset):
             - Is not needed for PyG's InMemoryDataset
         """
         data = torch.load(os.path.join(self.processed_dir,
-                                       f'data_{idx}.pt'))
+                                       f'data_{idx}.pt'), weights_only=False)
         return data
 
     @staticmethod
@@ -340,3 +340,10 @@ def load_dataset(dataset_name):
         raise ValueError(f'Dataset {dataset_name} not supported. ')
 
     return dataset
+
+def main():
+    for dataset_name in ['aids', 'mutagenicity', 'proteins', 'nci1']:
+        graphs = load_dataset(dataset_name)
+        print(str(dataset_name)+ " dataset created.")
+if __name__ == "__main__":
+    main()

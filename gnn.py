@@ -121,7 +121,7 @@ def load_trained_gnn(dataset_name, device):
         dim=20,
         dropout=0.0
     ).to(device)
-    model.load_state_dict(torch.load(f'data/{dataset_name}/gnn/model_best.pth', map_location=device))
+    model.load_state_dict(torch.load(f'data/{dataset_name}/gnn/model_best.pth', map_location=device, weights_only=False))
     return model
 
 
