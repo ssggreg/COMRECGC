@@ -7,6 +7,8 @@ This repository is a reference implementation of the Common Recourse explainer f
 > [arXiv:2505.07081](https://arxiv.org/abs/2505.07081)
 
 
+📌 This repository contains the official implementation of the method by the first author, **Gregoire Fournier**.
+
 ## Requirements
 
 We tested our code in Python 3.10.12 using the following main dependencies:
