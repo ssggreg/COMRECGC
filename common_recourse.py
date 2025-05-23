@@ -197,7 +197,7 @@ def main():
         print(f"\nProcessing method: {method_name}")
 
         # Load candidates
-        data = torch.load(file)
+        data = torch.load(file, weights_only=False)
         candidates = data['counterfactual_candidates']
         graph_map = data['graph_map']
 
@@ -205,23 +205,14 @@ def main():
         cfs = []
         for c in candidates:
             if c['importance_parts'][0] >= 0.5:
-                cfs.extend(graph_map[c['graph_hash']])
-        # If too few, add all reverse-predicted graphs
-        if len(cfs) < len(originals):
-            for g in counterfactual_pool:
-                g.edge_weight = getattr(g, 'edge_attr', torch.ones(g.edge_index.size(1)))
-                g.pred = getattr(g, 'y', torch.tensor(0))
-                for attr in ('edge_attr', 'y'):
-                    if hasattr(g, attr):
-                        delattr(g, attr)
-                cfs.append(g)
+                cfs.append(graph_map[c['graph_hash']][0])
 
         # Compute neurosed distances S_normalized (originals × cfs)
         neurosed = distance.load_neurosed(
             originals, neurosed_model_path=f'data/{args.dataset}/neurosed/best_model.pt',
             device=device
         ).to(device).eval()
-
+        
         with torch.no_grad():
             batch_cfs = tg.data.Batch.from_data_list(cfs).to(device)
             batch_orig = tg.data.Batch.from_data_list(originals).to(device)
