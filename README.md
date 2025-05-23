@@ -1,9 +1,11 @@
 # COMRECGC: Global Graph Counterfactual Explainer through Common Recourse
 
 This repository is a reference implementation of the Common Recourse explainer from the paper:
-<br/>
-> COMRECGC: Global Graph Counterfactual Explainer through Common
-Recourse.<br>
+
+> **COMRECGC: Global Graph Counterfactual Explainer through Common Recourse**  
+> Gregoire Fournier, Sourav Medya  
+> [arXiv:2505.07081](https://arxiv.org/abs/2505.07081)
+
 
 ## Requirements
 
