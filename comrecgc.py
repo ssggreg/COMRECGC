@@ -33,7 +33,7 @@ input_graphs_covered = []  # [int] with of number of input graphs
 covering_graphs = set()  # dictionary graph hash which is in first #number input graph counterfactual list (i.e., contributing input_graph_covered)
 transitions = {}  # graph_hash -> {transitions ([hashes], [actions], [importance_parts], tensor(input_graph_covering_for_all_neighbours))}
 start = {} #graph from which the random walk starts
-is_sample = ''
+is_sample = True
 starting_step = 1
 traversed_hashes = []  # list of traversed graph hashes
 sample_size = 0
@@ -43,7 +43,7 @@ sample_size = 0
 def get_args():
     parser = argparse.ArgumentParser(description='Graph Global Counterfactual Summary')
     parser.add_argument('--dataset', type=str, default='mutagenicity', choices=['mutagenicity', 'aids', 'nci1', 'proteins'])
-    parser.add_argument('--theta', type=float, default=0.05, help='distance threshold value during training.')
+    parser.add_argument('--theta', type=float, default=0.1, help='distance threshold value during training.')
     parser.add_argument('--teleport', type=float, default=0.1, help='teleport probability to input graphs')
     parser.add_argument('--steps', type=int, default=50000, help='random walk step size')
     parser.add_argument('--heads', type=int, default=5, help='number of heads')
@@ -51,7 +51,6 @@ def get_args():
     parser.add_argument('--device1', type=str, help='Cuda device or cpu for gnn model', default='0')
     parser.add_argument('--device2', type=str, help='Cuda device or cpu for neurosed model', default='0')
     parser.add_argument('--sample_size', type=int, help='Sample count for neighbour graphs', default=10000)
-    parser.add_argument('--sample', action='store_true')
     return parser.parse_args()
 
 def prepare_devices(device1, device2):
@@ -575,8 +574,6 @@ def main():
     number_heads = args.heads # k in the paper
     global sample_size
     sample_size = args.sample_size
-    global is_sample
-    is_sample = args.sample
     
     np.random.seed(0) 
     random.seed(0)
